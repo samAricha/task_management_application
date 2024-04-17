@@ -6,20 +6,57 @@ use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
-    function tasks(){
-
-
+    public function index()
+    {
+      $posts = Post::all();
+      return view('tasks.index', compact('posts'));
     }
 
-    function createTaks(){
-
+    public function store(Request $request)
+    {
+      $request->validate([
+        'title' => 'required|max:255',
+        'body' => 'required',
+      ]);
+      Post::create($request->all());
+      return redirect()->route('tasks.index')
+        ->with('success', 'Post created successfully.');
+    }
+   
+    public function update(Request $request, $id)
+    {
+      $request->validate([
+        'title' => 'required|max:255',
+        'body' => 'required',
+      ]);
+      $post = Post::find($id);
+      $post->update($request->all());
+      return redirect()->route('tasks.index')
+        ->with('success', 'Post updated successfully.');
     }
 
-    function updateTask(){
-
+    public function destroy($id)
+    {
+      $post = Post::find($id);
+      $post->delete();
+      return redirect()->route('tasks.index')
+        ->with('success', 'Post deleted successfully');
     }
 
-    function deleteTask(){
-        
+    public function create()
+    {
+      return view('tasks.create');
+    }
+
+    public function show($id)
+    {
+      $post = Post::find($id);
+      return view('tasks.show', compact('post'));
+    }
+
+    public function edit($id)
+    {
+      $post = Post::find($id);
+      return view('tasks.edit', compact('post'));
     }
 }

@@ -14,5 +14,5 @@ class Task extends Model
         'priority',
         'status',
         'date'
-    ]
+    ];
 }
