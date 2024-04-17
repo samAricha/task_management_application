@@ -19,7 +19,6 @@ Any IDE of your choice
 
 
 ## Screenshots
-<img src="art/gemini_chat_sdk.jpeg"  width="250"/>  
 
 
 ## Built with

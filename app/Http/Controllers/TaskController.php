@@ -8,7 +8,7 @@ class TaskController extends Controller
 {
     public function index()
     {
-      $posts = Post::all();
+      $tasks = Task::all();
       return view('tasks.index', compact('tasks'));
     }
 
@@ -33,18 +33,18 @@ class TaskController extends Controller
         'status' => 'required|max:255',
         'date' => 'required|max:255',
       ]);
-      $post = Task::find($id);
-      $post->update($request->all());
+      $task = Task::find($id);
+      $task->update($request->all());
       return redirect()->route('tasks.index')
-        ->with('success', 'Post updated successfully.');
+        ->with('success', 'Task updated successfully.');
     }
 
     public function destroy($id)
     {
-      $post = Task::find($id);
-      $post->delete();
+      $task = Task::find($id);
+      $task->delete();
       return redirect()->route('tasks.index')
-        ->with('success', 'Post deleted successfully');
+        ->with('success', 'Task deleted successfully');
     }
 
     public function create()
@@ -54,13 +54,13 @@ class TaskController extends Controller
 
     public function show($id)
     {
-      $post = Task::find($id);
-      return view('tasks.show', compact('post'));
+      $task = Task::find($id);
+      return view('tasks.show', compact('task'));
     }
 
     public function edit($id)
     {
-      $post = Task::find($id);
-      return view('tasks.edit', compact('post'));
+      $task = Task::find($id);
+      return view('tasks.edit', compact('task'));
     }
 }
