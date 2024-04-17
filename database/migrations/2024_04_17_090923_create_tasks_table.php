@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('task_name');
             $table->string('priority');
             $table->string('status');
+            $table->string('date');
             $table->timestamps();
         });
     }
